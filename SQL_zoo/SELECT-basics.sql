@@ -1,6 +1,6 @@
 1.Introducing the world table of countries
   SELECT population FROM world
-  WHERE name = 'German
+  WHERE name = 'German'
   
 2.Scandinavia
   SELECT name, population FROM world

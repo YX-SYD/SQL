@@ -1,2 +1,2 @@
 # SQL
-My solutions to some popular SQL practice
+My solutions of some popular SQL practices

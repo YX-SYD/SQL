@@ -92,3 +92,23 @@ LEFT JOIN Senior_Manager s on l.lead_manager_code = s.lead_manager_code
 LEFT JOIN Manager m on s.senior_manager_code = m.senior_manager_code
 LEFT JOIN employee e on m.manager_code = e.manager_code
 GROUP BY c.company_code, c.founder
+
+/*
+Weather Observation Station 20:
+A median is defined as a number separating the higher half of a data set from the lower half. 
+Query the median of the Northern Latitudes (LAT_N) from STATION and round your answer to  decimal places.
+*/
+SET @rowindex:=-1;
+SELECT ROUND(AVG(LAT_N),4)
+FROM
+    (SELECT 
+        @rowindex:=@rowindex+1 AS rowindex,
+        LAT_N
+     FROM STATION
+     ORDER BY LAT_N
+    ) as sta
+WHERE sta.rowindex IN (FLOOR(@rowindex/2),CEIL(@rowindex/2))
+
+
+
+

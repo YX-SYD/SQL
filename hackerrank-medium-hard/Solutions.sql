@@ -109,6 +109,35 @@ FROM
     ) as sta
 WHERE sta.rowindex IN (FLOOR(@rowindex/2),CEIL(@rowindex/2))
 
+/*
+Students table: ID, Name, Marks
+Grades: Grade, Min_Mark, Max_Mark
+
+Ketty gives Eve a task to generate a report containing three columns: Name, Grade and Mark. 
+Ketty doesn't want the NAMES of those students who received a grade lower than 8. 
+The report must be in descending order by grade -- i.e. higher grades are entered first. 
+If there is more than one student with the same grade (8-10) assigned to them, order those particular students by their name alphabetically. 
+Finally, if the grade is lower than 8, use "NULL" as their name and list them by their grades in descending order. 
+If there is more than one student with the same grade (1-7) assigned to them, order those particular students by their marks in ascending order.
+*/
+SELECT 
+    CASE
+        WHEN Grade>=8 THEN Name
+        ELSE Null
+    END,
+    Grade,
+    Marks
+FROM
+(
+    SELECT
+        s.Name,
+        s.Marks,
+        g.Grade
+    FROM Students s
+    LEFT JOIN Grades g ON s.Marks>= g.Min_Mark and s.Marks<=g.Max_Mark
+) AS sg
+ORDER BY Grade DESC, Name,Marks DESCSELECT 
+
 
 
 
